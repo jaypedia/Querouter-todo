@@ -1,35 +1,81 @@
-const color = {
-  white: '#FFFFFF',
+import { COLOR } from './color';
 
-  grey: {
-    100: '#EFF0F6',
-    200: '#D9DBE9',
-    300: '#A0A3BD',
-    400: '#6E7191',
-    500: '#4E4B66',
+export interface ColorType {
+  headerBg: string;
+  bg: string;
+  inputBg: string;
+  cell: {
+    bg: {
+      cellHeaderBg: string;
+      cellBg: string;
+    };
+    font: {
+      initial: string;
+      active: string;
+    };
+  };
+  text: string;
+  lightText: string;
+  line: string;
+  primary: {
+    [key: string]: string;
+  };
+  error: {
+    [key: string]: string;
+  };
+  success: {
+    [key: string]: string;
+  };
+}
+
+export interface ThemeType {
+  color: ColorType;
+}
+
+export const DARK: ThemeType = {
+  color: {
+    headerBg: COLOR.grey[600],
+    bg: COLOR.black,
+    cell: {
+      bg: {
+        cellHeaderBg: COLOR.grey[600],
+        cellBg: COLOR.grey[400],
+      },
+      font: {
+        initial: COLOR.grey[200],
+        active: COLOR.white,
+      },
+    },
+    inputBg: COLOR.grey[700],
+    text: COLOR.white,
+    lightText: COLOR.grey[300],
+    line: COLOR.grey[400],
+    primary: COLOR.primary,
+    error: COLOR.error,
+    success: COLOR.success,
   },
-  black: '#000000',
 };
 
-const font = {
-  regular_extra_small: "normal 400 12px 'Pretendard'",
-  regular_small: "normal 400 14px 'Pretendard'",
-  regular_medium: "normal 400 16px 'Pretendard'",
-  regular_large: "normal 400 18px 'Pretendard'",
-  regular_extra_large: "normal 400 22px 'Pretendard'",
-
-  bold_extra_small: "normal 700 12px 'Pretendard'",
-  bold_small: "normal 700 14px 'Pretendard'",
-  bold_medium: "normal 700 16px 'Pretendard'",
-  bold_large: "normal 700 18px 'Pretendard'",
-  bold_extra_large: "normal 700 22px 'Pretendard'",
-
-  display_small: "normal 700 30px 'Pretendard'",
-  display_medium: "normal 700 48px 'Pretendard'",
-  display_large: "normal 700 60px 'Pretendard'",
-};
-
-export const theme = {
-  color,
-  font,
+export const LIGHT: ThemeType = {
+  color: {
+    headerBg: COLOR.grey[100],
+    bg: COLOR.white,
+    cell: {
+      bg: {
+        cellHeaderBg: COLOR.grey[100],
+        cellBg: COLOR.white,
+      },
+      font: {
+        initial: COLOR.grey[400],
+        active: COLOR.black,
+      },
+    },
+    inputBg: COLOR.grey[100],
+    text: COLOR.black,
+    lightText: COLOR.grey[400],
+    line: COLOR.grey[200],
+    primary: COLOR.primary,
+    error: COLOR.error,
+    success: COLOR.success,
+  },
 };

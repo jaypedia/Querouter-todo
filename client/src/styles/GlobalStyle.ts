@@ -31,6 +31,12 @@ export const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
     font-style: normal;
     font-display: swap;
   }
+
+  body {
+    color: ${({ theme }) => theme.color.text};
+    background: ${({ theme }) => theme.color.bg};
+    transition: background 0.2s ease-in, color 0.2s ease-in;
+  }
   
   button,
   input,
