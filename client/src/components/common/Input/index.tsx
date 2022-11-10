@@ -5,7 +5,7 @@ import { InputProps } from './type';
 
 type I = React.ComponentPropsWithRef<'input'> & InputProps;
 
-const Input: React.FC<I> = React.forwardRef((inputData, ref) => {
+export const Input: React.FC<I> = React.forwardRef((inputData, ref) => {
   const {
     inputLabel,
     type,
@@ -44,5 +44,3 @@ const Input: React.FC<I> = React.forwardRef((inputData, ref) => {
     </S.InputLabel>
   );
 });
-
-export default Input;
