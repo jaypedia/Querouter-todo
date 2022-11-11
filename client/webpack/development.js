@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 
-const PORT = 8080;
+const PORT = 9000;
 
 module.exports = {
   mode: 'development',
