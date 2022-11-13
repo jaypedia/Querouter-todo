@@ -30,6 +30,11 @@ const Heading1 = styled.h1`
   margin: 0;
 `;
 
+const Heading2 = styled.h2`
+  font: ${FONT.display_small};
+  margin: 0;
+`;
+
 const Heading4 = styled.h4`
   font: ${FONT.regular_medium};
   margin: 10px;
@@ -76,6 +81,7 @@ export {
   ColumnWrapper,
   headerWrapperStyle,
   Heading1,
+  Heading2,
   Heading4,
   Flex,
   FlexBetween,

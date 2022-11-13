@@ -63,7 +63,7 @@ export const LIGHT: ThemeType = {
     cell: {
       bg: {
         cellHeaderBg: COLOR.grey[100],
-        cellBg: COLOR.white,
+        cellBg: COLOR.grey[200],
       },
       font: {
         initial: COLOR.grey[400],
