@@ -28,10 +28,18 @@ const small = `
   font: ${FONT.bold_extra_small};
 `;
 
+const xSmall = `
+  width: 90px;
+  height: 30px;
+  border-radius: 11px;
+  font: ${FONT.bold_extra_small};
+`;
+
 const sizeObj = {
   large,
   medium,
   small,
+  xSmall,
 };
 
 // Button Background Colors
