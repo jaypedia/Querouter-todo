@@ -1,14 +1,17 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 
 import { API_END_POINT } from '../constants/constants';
 
 import { Todo } from '@/types/todoType';
 /* eslint-disable consistent-return */
 
-const todoInstance = axios.create({
+const axiosConfig: AxiosRequestConfig = {
   baseURL: `${API_END_POINT}/todos`,
+  timeout: 10000,
   headers: { Authorization: localStorage.getItem('user token') || '' },
-});
+};
+
+const todoInstance = axios.create(axiosConfig);
 
 export const getTodos = async () => {
   try {
