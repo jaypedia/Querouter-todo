@@ -1,13 +1,13 @@
-export type ButtonStyleProps = {
+import { ButtonHTMLAttributes } from 'react';
+
+export interface ButtonStyleProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: 'large' | 'medium' | 'small' | 'xSmall';
   color?: 'primary' | 'grey' | 'warning';
   background?: 'primary' | 'grey' | 'black';
-  type?: 'button' | 'submit' | 'reset';
   onClick?: () => void;
-  disabled?: boolean;
   isText?: boolean;
-};
+}
 
-export type ButtonProps = ButtonStyleProps & {
+export interface ButtonProps extends ButtonStyleProps {
   text: string;
-};
+}
