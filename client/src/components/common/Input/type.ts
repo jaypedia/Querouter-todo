@@ -1,17 +1,11 @@
-export type InputStyleProps = {
+import { InputHTMLAttributes } from 'react';
+
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+  title: string;
+  defaultValue?: string;
   inputStyle: 'large' | 'medium' | 'small';
   hasBorder?: boolean;
   inputLabel?: string;
-};
+}
 
-export type InputProps = InputStyleProps & {
-  title: string;
-  placeholder?: string;
-  type: string;
-  name: string;
-  defaultValue?: string;
-  value?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  maxLength?: number;
-  pattern?: string;
-};
+export type InputStyleProps = Pick<InputProps, 'inputStyle' | 'hasBorder' | 'inputLabel'>;
