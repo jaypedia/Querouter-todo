@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { FormEvent, useEffect } from 'react';
 
 import { useLogin } from './Login.hook';
 import * as S from './style';
@@ -9,6 +9,11 @@ import { Input } from '@/components/common/Input';
 import { USER_TOKEN } from '@/constants/constants';
 import useMovePage from '@/hooks/useMovePage';
 import { Heading1 } from '@/styles/common';
+
+interface FormDataType extends EventTarget {
+  email?: HTMLInputElement;
+  password?: HTMLInputElement;
+}
 
 export const Login = () => {
   const {
@@ -22,15 +27,16 @@ export const Login = () => {
   } = useLogin();
   const [goHome] = useMovePage('/');
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleLogin = async (e: FormEvent) => {
     e.preventDefault();
-    const formData = e.target;
+    const formData: FormDataType = e.target;
+    if (!formData.email || !formData.password) return;
     const userAccount = { email: formData.email.value, password: formData.password.value };
     const response = await postLogin(userAccount);
-    if (response.token) {
+    if (response && response.token) {
       goHome();
     } else {
-      alert(response.message);
+      alert('유효하지 않은 이메일이거나 비밀번호입니다. 다시 확인해주세요.');
     }
   };
 
