@@ -26,6 +26,7 @@ export interface ColorType {
   success: {
     [key: string]: string;
   };
+  hover: string;
 }
 
 export interface ThemeType {
@@ -53,6 +54,7 @@ export const DARK: ThemeType = {
     primary: COLOR.primary,
     error: COLOR.error,
     success: COLOR.success,
+    hover: COLOR.grey[400],
   },
 };
 
@@ -77,5 +79,6 @@ export const LIGHT: ThemeType = {
     primary: COLOR.primary,
     error: COLOR.error,
     success: COLOR.success,
+    hover: COLOR.grey[200],
   },
 };

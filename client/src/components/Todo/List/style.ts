@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import { COLOR } from '@/styles/color';
 import { FONT } from '@/styles/font';
 
 const ListContainer = styled.div`
@@ -15,17 +16,22 @@ const ListItems = styled.div`
   width: 30%;
   padding: 20px;
   overflow-y: scroll;
+
+  a.active li {
+    background-color: ${COLOR.primary[300]};
+    color: white;
+  }
+
+  a:hover:not(.active) li {
+    background-color: ${({ theme: { color } }) => color.hover};
+  }
 `;
 
-const ListItem = styled.div`
+const ListItem = styled.li`
   padding: 10px;
   font: ${FONT.bold_medium};
   border-radius: 10px;
-  cursor: pointer;
-
-  :hover {
-    background-color: white;
-  }
+  margin-bottom: 5px;
 `;
 
 const DetailContainer = styled.div`
