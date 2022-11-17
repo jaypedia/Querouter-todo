@@ -32,6 +32,9 @@ const ListItem = styled.li`
   font: ${FONT.bold_medium};
   border-radius: 10px;
   margin-bottom: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: pre;
 `;
 
 const DetailContainer = styled.div`
