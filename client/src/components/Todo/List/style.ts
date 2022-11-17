@@ -34,7 +34,7 @@ const ListItem = styled.li`
   margin-bottom: 5px;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: pre;
+  white-space: nowrap;
 `;
 
 const DetailContainer = styled.div`
