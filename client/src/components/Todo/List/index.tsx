@@ -4,9 +4,12 @@ import { Detail } from './Detail';
 import * as S from './style';
 
 import { getTodoById } from '@/apis/todoApi';
+import { useGetTodos } from '@/queries/todo';
 import { Todo } from '@/types/todoType';
 
-export const List = ({ todoList }: Todo[]) => {
+export const List = () => {
+  const { data: todoData, isSuccess } = useGetTodos();
+
   const [todoDetail, setTodoDetail] = useState({
     id: null,
     title: '',
@@ -21,11 +24,13 @@ export const List = ({ todoList }: Todo[]) => {
   return (
     <S.ListContainer>
       <S.ListItems>
-        {todoList?.map(({ id, title }) => (
-          <S.ListItem key={id} onClick={() => handleListItemClick(id)}>
-            {title}
-          </S.ListItem>
-        ))}
+        {isSuccess
+          ? todoData.data.map(({ id, title }: Pick<Todo, 'id' | 'title'>) => (
+              <S.ListItem key={id} onClick={() => handleListItemClick(id)}>
+                {title}
+              </S.ListItem>
+            ))
+          : null}
       </S.ListItems>
       <Detail id={todoDetail.id} />
     </S.ListContainer>

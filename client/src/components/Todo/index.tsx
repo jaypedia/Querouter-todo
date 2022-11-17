@@ -1,13 +1,11 @@
 import { Header } from './Header';
 import { List } from './List';
 
-export const Todo = ({ todoList }) => {
-  const list = todoList.data;
-
+export const Todo = () => {
   return (
     <>
       <Header />
-      <List todoList={list} />
+      <List />
     </>
   );
 };
