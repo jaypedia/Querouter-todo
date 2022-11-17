@@ -14,11 +14,15 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: ':todoId',
+        path: 'todos/:todoId',
         element: <Home />,
       },
       {
-        path: 'new-todo',
+        path: 'todos/new-todo',
+        element: <NewTodo />,
+      },
+      {
+        path: 'todos/:todoId/edit',
         element: <NewTodo />,
       },
     ],
