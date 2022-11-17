@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 import { Detail } from './Detail';
 import * as S from './style';
@@ -26,9 +27,13 @@ export const List = () => {
       <S.ListItems>
         {isSuccess
           ? todoData.data.map(({ id, title }: Pick<Todo, 'id' | 'title'>) => (
-              <S.ListItem key={id} onClick={() => handleListItemClick(id)}>
-                {title}
-              </S.ListItem>
+              <NavLink
+                key={id}
+                to={`/${id}`}
+                className={({ isActive }) => (isActive ? 'active' : '')}
+              >
+                <S.ListItem>{title}</S.ListItem>
+              </NavLink>
             ))
           : null}
       </S.ListItems>
