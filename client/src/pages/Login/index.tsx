@@ -6,7 +6,7 @@ import * as S from './style';
 import { postLogin } from '@/apis/loginApi';
 import { Button } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
-import { USER_TOKEN } from '@/constants/constants';
+import { USER_TOKEN_KEY } from '@/constants';
 import useMovePage from '@/hooks/useMovePage';
 import { Heading1 } from '@/styles/common';
 
@@ -41,7 +41,7 @@ export const Login = () => {
   };
 
   useEffect(() => {
-    const userToken = localStorage.getItem(USER_TOKEN);
+    const userToken = localStorage.getItem(USER_TOKEN_KEY);
     if (userToken) {
       goHome();
     }

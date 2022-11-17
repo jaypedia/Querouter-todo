@@ -1,7 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
 
-import { API_END_POINT } from '../constants/constants';
-
+import { API_END_POINT } from '@/constants';
 import { Todo } from '@/types/todoType';
 /* eslint-disable consistent-return */
 

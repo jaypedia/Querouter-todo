@@ -1,14 +1,14 @@
 import * as S from './style';
 
 import { Button } from '@/components/common/Button';
-import { USER_TOKEN } from '@/constants/constants';
+import { USER_TOKEN_KEY } from '@/constants';
 import useMovePage from '@/hooks/useMovePage';
 import { Heading2 } from '@/styles/common';
 
 export const NavBar = () => {
   const [goLogin] = useMovePage('/login');
   const handleButtonClick = () => {
-    localStorage.removeItem(USER_TOKEN);
+    localStorage.removeItem(USER_TOKEN_KEY);
     goLogin();
   };
 

@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
 
-import { USER_TOKEN, API_END_POINT } from '@/constants/constants';
+import { USER_TOKEN_KEY, API_END_POINT } from '@/constants';
 /* eslint-disable consistent-return */
 
 type UserAccount = {
@@ -30,7 +30,7 @@ export const postLogin = async (userAccount: UserAccount) => {
     const response = await loginInstance.post(`/login`, userAccount);
     const { message, token } = response.data;
     if (response.status === 200) {
-      localStorage.setItem(USER_TOKEN, token);
+      localStorage.setItem(USER_TOKEN_KEY, token);
     }
     return { message, token };
   } catch (error) {
