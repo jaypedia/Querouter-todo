@@ -1,18 +1,30 @@
-import { Routes, Route } from 'react-router-dom';
+import { createBrowserRouter } from 'react-router-dom';
 
 import { Layout } from '@/layout';
-import { Home, NotFound, SignUp, Login, NewTodo } from '@/pages';
+import { Home, SignUp, Login, NewTodo, Error } from '@/pages';
 
-export const Router = () => {
-  return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path="/new-todo" element={<NewTodo />} />
-      </Route>
-      <Route path="login" element={<Login />} />
-      <Route path="sign-up" element={<SignUp />} />
-      <Route path="*" element={<NotFound />} />
-    </Routes>
-  );
-};
+export const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Layout />,
+    errorElement: <Error />,
+    children: [
+      {
+        index: true,
+        element: <Home />,
+      },
+      {
+        path: 'new-todo',
+        element: <NewTodo />,
+      },
+    ],
+  },
+  {
+    path: 'login',
+    element: <Login />,
+  },
+  {
+    path: 'sign-up',
+    element: <SignUp />,
+  },
+]);

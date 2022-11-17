@@ -1,12 +1,11 @@
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { useState } from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import { RecoilRoot } from 'recoil';
+import { RouterProvider } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
 import { useSwitchTheme } from './hooks/useSwitchTheme';
-import { Router } from './Router';
+import { router } from './router';
 
 import { ThemeSwitch } from '@/components/ThemeSwitch';
 import { GlobalStyle } from '@/styles/GlobalStyle';
@@ -22,11 +21,7 @@ export const App = () => {
       <ReactQueryDevtools initialIsOpen />
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <RecoilRoot>
-          <BrowserRouter>
-            <Router />
-          </BrowserRouter>
-        </RecoilRoot>
+        <RouterProvider router={router} />
         <ThemeSwitch switchTheme={switchTheme} isLight={isLight} />
       </ThemeProvider>
     </QueryClientProvider>
