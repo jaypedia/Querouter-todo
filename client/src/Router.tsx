@@ -1,13 +1,14 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import { Layout } from '@/layout';
-import { Home, SignUp, Login, Error } from '@/pages';
+import { Layout, loader as TodoLoader } from '@/layout';
+import { Home, SignUp, Login, Error, loader as LoginLoader } from '@/pages';
 
 export const router = createBrowserRouter([
   {
     path: '/',
     element: <Layout />,
     errorElement: <Error />,
+    loader: TodoLoader,
     children: [
       {
         index: true,
@@ -19,12 +20,13 @@ export const router = createBrowserRouter([
       },
       {
         path: 'todos/:todoId/edit',
-        element: <NewTodo />,
+        element: <Home />,
       },
     ],
   },
   {
     path: 'login',
+    loader: LoginLoader,
     element: <Login />,
   },
   {

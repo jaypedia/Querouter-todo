@@ -1,4 +1,5 @@
-import { FormEvent, useEffect } from 'react';
+import { FormEvent } from 'react';
+import { redirect } from 'react-router-dom';
 
 import { useLogin } from './Login.hook';
 import * as S from './style';
@@ -14,6 +15,14 @@ interface FormDataType extends EventTarget {
   email?: HTMLInputElement;
   password?: HTMLInputElement;
 }
+
+// eslint-disable-next-line consistent-return
+export const loader = () => {
+  const userToken = localStorage.getItem(USER_TOKEN_KEY);
+  if (userToken) {
+    return redirect('/');
+  }
+};
 
 export const Login = () => {
   const {
@@ -39,13 +48,6 @@ export const Login = () => {
       alert('유효하지 않은 이메일이거나 비밀번호입니다. 다시 확인해주세요.');
     }
   };
-
-  useEffect(() => {
-    const userToken = localStorage.getItem(USER_TOKEN_KEY);
-    if (userToken) {
-      goHome();
-    }
-  });
 
   return (
     <S.LoginWrapper>
