@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 
 import { Detail } from './Detail';
 import * as S from './style';
@@ -8,6 +8,7 @@ import { Todo } from '@/types/todoType';
 
 export const List = () => {
   const { data: todoData, isSuccess } = useGetTodos();
+  const { todoId } = useParams();
 
   return (
     <S.ListContainer>
@@ -24,7 +25,7 @@ export const List = () => {
             ))
           : null}
       </S.ListItems>
-      <Detail />
+      {todoId ? <Detail todoId={todoId} /> : null}
     </S.ListContainer>
   );
 };

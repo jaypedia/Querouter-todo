@@ -1,19 +1,18 @@
-import { useParams } from 'react-router-dom';
-
-import { Form } from '../../Form';
 import * as S from './style';
 
 import { deleteTodos } from '@/apis/todoApi';
 import { Button } from '@/components/common/Button';
+import { Form } from '@/components/Todo/Form';
 import useBoolean from '@/hooks/useBoolean';
 import useMovePage from '@/hooks/useMovePage';
 import { useGetTodoById, useRefetchTodo, useRefetchTodoDetail } from '@/queries/todo';
 import { FlexEnd, Heading2 } from '@/styles/common';
 import { Todo } from '@/types/todoType';
+import { timeForToday } from '@/utils/time';
 
 const DetailContent = ({ todoContent }: { todoContent: Todo }) => {
-  const { id, title, content } = todoContent;
-  const [goHome] = useMovePage('/');
+  const { id, title, content, createdAt, updatedAt } = todoContent;
+  const [goHome, goEdit] = useMovePage(['/', `/todos/${id}/edit`]);
 
   const { mutate: mutateTodo } = useRefetchTodo();
   const { mutate: mutateDetail } = useRefetchTodoDetail(id);
@@ -21,6 +20,7 @@ const DetailContent = ({ todoContent }: { todoContent: Todo }) => {
 
   const handleEditClick = () => {
     setTrue();
+    goEdit();
   };
 
   const handleDeleteClick = () => {
@@ -31,23 +31,22 @@ const DetailContent = ({ todoContent }: { todoContent: Todo }) => {
   };
 
   return isEditOpen ? (
-    <Form formType="edit" onCancel={setFalse} editTodoData={{ id, title, content }} />
+    <Form onCancel={setFalse} editTodoData={{ id, title, content }} />
   ) : (
     <>
       <Heading2>{title}</Heading2>
-      {id && (
-        <FlexEnd>
-          <Button size="xSmall" background="primary" text="Edit" onClick={handleEditClick} />
-          <Button size="xSmall" background="black" text="Delete" onClick={handleDeleteClick} />
-        </FlexEnd>
-      )}
-      <div>{content}</div>
+      <FlexEnd>
+        <Button size="xSmall" background="primary" text="Edit" onClick={handleEditClick} />
+        <Button size="xSmall" background="black" text="Delete" onClick={handleDeleteClick} />
+      </FlexEnd>
+      <S.TodoContent>{content || '💨 No content.'}</S.TodoContent>
+      <S.Time>⏰ Created at: {timeForToday(createdAt)}</S.Time>
+      <S.Time>🖍 Updated at: {timeForToday(updatedAt)}</S.Time>
     </>
   );
 };
 
-export const Detail = () => {
-  const { todoId } = useParams();
+export const Detail = ({ todoId }: { todoId: string }) => {
   const { data: todoContent, isLoading } = useGetTodoById(todoId);
 
   return (
