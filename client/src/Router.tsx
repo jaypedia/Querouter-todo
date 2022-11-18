@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 
 import { Layout } from '@/layout';
-import { Home, SignUp, Login, NewTodo, Error } from '@/pages';
+import { Home, SignUp, Login, Error } from '@/pages';
 
 export const router = createBrowserRouter([
   {
@@ -16,10 +16,6 @@ export const router = createBrowserRouter([
       {
         path: 'todos/:todoId',
         element: <Home />,
-      },
-      {
-        path: 'todos/new-todo',
-        element: <NewTodo />,
       },
       {
         path: 'todos/:todoId/edit',

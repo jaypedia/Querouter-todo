@@ -2,35 +2,28 @@ import { useRef } from 'react';
 
 import * as S from './style';
 
-import { createTodo, updateTodo } from '@/apis/todoApi';
+import { updateTodo } from '@/apis/todoApi';
 import { Button } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import TextArea from '@/components/common/TextArea';
-import useMovePage from '@/hooks/useMovePage';
 import { useRefetchTodo, useRefetchTodoDetail } from '@/queries/todo';
 import { FlexEnd } from '@/styles/common';
 import { Todo } from '@/types/todoType';
 
 type FormProps = {
-  formType?: string;
-  onCancel?: () => void;
-  editTodoData?: Pick<Todo, 'id' | 'title' | 'content'>;
+  onCancel: () => void;
+  editTodoData: Pick<Todo, 'id' | 'title' | 'content'>;
 };
 
-export const Form = ({ formType = 'newTodo', onCancel, editTodoData }: FormProps) => {
-  const [goHome] = useMovePage('/');
+export const Form = ({ onCancel, editTodoData }: FormProps) => {
   const titleRef = useRef<HTMLInputElement>(null);
   const contentRef = useRef<HTMLTextAreaElement>(null);
   const { mutate } = useRefetchTodo();
-  // TODO: Argument of type 'string | undefined' is not assignable to parameter of type 'string'.
-  const { mutate: mutateDetail } = useRefetchTodoDetail(editTodoData?.id);
+  const todoId = editTodoData.id;
+  const { mutate: mutateDetail } = useRefetchTodoDetail(todoId);
 
   const handleCancelClick = () => {
-    if (formType === 'edit' && onCancel) {
-      onCancel();
-    } else {
-      goHome();
-    }
+    onCancel();
   };
 
   const handleSubmit = async () => {
@@ -41,16 +34,10 @@ export const Form = ({ formType = 'newTodo', onCancel, editTodoData }: FormProps
       content: contentRef.current.value,
     };
 
-    if (formType === 'edit' && editTodoData && onCancel) {
-      await updateTodo({ id: editTodoData.id, ...todoData });
-      mutate();
-      mutateDetail();
-      onCancel();
-    } else {
-      await createTodo(todoData);
-      mutate();
-      goHome();
-    }
+    await updateTodo({ id: todoId, ...todoData });
+    mutate();
+    mutateDetail();
+    onCancel();
   };
 
   return (
@@ -62,9 +49,9 @@ export const Form = ({ formType = 'newTodo', onCancel, editTodoData }: FormProps
         title="Title"
         type="text"
         ref={titleRef}
-        defaultValue={editTodoData?.title}
+        defaultValue={editTodoData.title}
       />
-      <TextArea name="content" ref={contentRef} defaultValue={editTodoData?.content} />
+      <TextArea name="content" ref={contentRef} defaultValue={editTodoData.content} />
       <FlexEnd>
         <Button
           size="small"
@@ -76,7 +63,7 @@ export const Form = ({ formType = 'newTodo', onCancel, editTodoData }: FormProps
         <Button
           size="small"
           background="primary"
-          text={formType === 'edit' ? 'Update todo' : 'Create new todo'}
+          text="Update todo"
           type="button"
           onClick={handleSubmit}
         />
