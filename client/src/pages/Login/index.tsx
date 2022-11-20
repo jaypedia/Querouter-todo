@@ -1,5 +1,6 @@
-import { FormEvent } from 'react';
+import { FormEvent, useRef } from 'react';
 import { redirect } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import { useLogin } from './Login.hook';
 import * as S from './style';
@@ -8,6 +9,7 @@ import { postLogin } from '@/apis/loginApi';
 import { Button } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
 import { USER_TOKEN_KEY } from '@/constants';
+import { TOAST_LOGIN } from '@/constants/toast';
 import useMovePage from '@/hooks/useMovePage';
 import { Heading1 } from '@/styles/common';
 
@@ -35,6 +37,7 @@ export const Login = () => {
     passwordInput,
   } = useLogin();
   const [goHome] = useMovePage('/');
+  const toastId = useRef(null);
 
   const handleLogin = async (e: FormEvent) => {
     e.preventDefault();
@@ -44,8 +47,9 @@ export const Login = () => {
     const response = await postLogin(userAccount);
     if (response && response.token) {
       goHome();
-    } else {
-      alert('유효하지 않은 이메일이거나 비밀번호입니다. 다시 확인해주세요.');
+      toast.success(TOAST_LOGIN.message.success, TOAST_LOGIN.option);
+    } else if (!toast.isActive(toastId.current)) {
+      toastId.current = toast.warn(TOAST_LOGIN.message.fail, TOAST_LOGIN.option);
     }
   };
 

@@ -1,8 +1,11 @@
+import { toast } from 'react-toastify';
+
 import * as S from './style';
 
 import { deleteTodos } from '@/apis/todoApi';
 import { Button } from '@/components/common/Button';
 import { Form } from '@/components/Todo/Form';
+import { TOAST_TODO } from '@/constants/toast';
 import useBoolean from '@/hooks/useBoolean';
 import useMovePage from '@/hooks/useMovePage';
 import { useGetTodoById, useRefetchTodo, useRefetchTodoDetail } from '@/queries/todo';
@@ -24,6 +27,7 @@ const DetailContent = ({ todoContent }: { todoContent: Todo }) => {
   };
 
   const handleDeleteClick = () => {
+    toast.success(TOAST_TODO.message.delete, TOAST_TODO.option);
     deleteTodos(id);
     mutateDetail();
     mutateTodo();
