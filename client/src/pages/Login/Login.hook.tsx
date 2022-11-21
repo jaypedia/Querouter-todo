@@ -11,7 +11,7 @@ export const useLogin = (isCreateAccount = false) => {
   const { value: passwordInput, setValue: setPasswordInput } = useInput('');
   const { value: passwordConfirmInput, setValue: setPasswordConfirmInput } = useInput('');
 
-  const isValid = () => {
+  const isValidInput = () => {
     const email = emailRef.current?.value;
     const password = passwordRef.current?.value;
     const passwordConfirm = passwordConfirmRef.current?.value;
@@ -22,27 +22,24 @@ export const useLogin = (isCreateAccount = false) => {
     return true;
   };
 
-  const setButton = () => {
-    if (isValid()) {
-      setIsButtonDisabled(false);
-    } else {
-      setIsButtonDisabled(true);
-    }
+  const checkInputAndSetButton = () => {
+    const isValid = isValidInput();
+    setIsButtonDisabled(!isValid);
   };
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmailInput(e.target.value);
-    setButton();
+    checkInputAndSetButton();
   };
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPasswordInput(e.target.value);
-    setButton();
+    checkInputAndSetButton();
   };
 
   const handlePasswordConfirmChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPasswordConfirmInput(e.target.value);
-    setButton();
+    checkInputAndSetButton();
   };
 
   return {

@@ -1,11 +1,9 @@
-import React from 'react';
+import { forwardRef } from 'react';
 
 import * as S from './style';
 import { InputProps } from './type';
 
-type I = React.ComponentPropsWithRef<'input'> & InputProps;
-
-export const Input: React.FC<I> = React.forwardRef((inputData, ref) => {
+export const Input = forwardRef<HTMLInputElement, InputProps>((inputData, ref) => {
   const {
     inputLabel,
     type,
