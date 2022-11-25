@@ -16,6 +16,7 @@ import {
   Todo,
   Default,
   rootLoader,
+  rootAction,
   loginLoader,
   todoLoader,
 } from '@/pages';
@@ -38,6 +39,7 @@ export const router = createBrowserRouter([
     element: <Root />,
     errorElement: <Error />,
     loader: rootLoader,
+    action: rootAction(queryClient),
     children: [
       {
         index: true,
