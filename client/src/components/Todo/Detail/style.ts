@@ -5,11 +5,12 @@ import { FONT } from '@/styles/font';
 
 const DetailContainer = styled.div`
   background: ${({ theme: { color } }) => color.cell.bg.cellBg};
-  width: 70%;
   height: 60vh;
   ${flexBox({ direction: 'column', alignItems: 'flex-start', justifyContent: 'flex-start' })}
   border-bottom-right-radius: 10px;
   padding: 20px;
+  grid-area: todo;
+  z-index: 999;
 `;
 
 const TodoContent = styled.div`
@@ -18,6 +19,7 @@ const TodoContent = styled.div`
   padding: 10px;
   width: 100%;
   border-radius: 10px;
+  white-space: pre;
 `;
 
 const Time = styled.div`
