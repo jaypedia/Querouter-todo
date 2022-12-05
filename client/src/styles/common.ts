@@ -5,6 +5,9 @@ import { FONT } from './font';
 
 const MainWrapper = styled.main`
   padding: 32px 0;
+  display: flex;
+  height: 100vh;
+  align-items: center;
 `;
 
 const InnerContainer = styled.div`
@@ -13,9 +16,11 @@ const InnerContainer = styled.div`
   margin: 0 auto;
 `;
 
-const ColumnWrapper = styled(InnerContainer)`
-  ${flexBox({ direction: 'column' })}
-  padding: 32px 0;
+const TodoBox = styled(InnerContainer)`
+  display: grid;
+  grid-template-areas:
+    'header header header header'
+    'list todo todo todo';
 `;
 
 const headerWrapperStyle = css`
@@ -75,10 +80,20 @@ const FlexColumnStart = styled.div`
   ${flexBox({ direction: 'column', justifyContent: 'flex-start', alignItems: 'flex-start' })}
 `;
 
+const DetailContainer = styled.div`
+  background: ${({ theme: { color } }) => color.cell.bg.cellBg};
+  height: 60vh;
+  ${flexBox({ direction: 'column', alignItems: 'flex-start', justifyContent: 'flex-start' })}
+  border-bottom-right-radius: 10px;
+  padding: 20px;
+  grid-area: todo;
+  z-index: 999;
+`;
+
 export {
   MainWrapper,
   InnerContainer,
-  ColumnWrapper,
+  TodoBox,
   headerWrapperStyle,
   Heading1,
   Heading2,
@@ -90,4 +105,5 @@ export {
   FlexEnd,
   FlexColumnStart,
   FlexEndAlign,
+  DetailContainer,
 };

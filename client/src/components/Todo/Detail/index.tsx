@@ -7,7 +7,7 @@ import { Button } from '@/components/common/Button';
 import { TOAST_TODO } from '@/constants/toast';
 import useMovePage from '@/hooks/useMovePage';
 import { useRefetchTodo, useRefetchTodoDetail } from '@/queries/todo';
-import { FlexEnd, Heading2 } from '@/styles/common';
+import { DetailContainer, FlexEnd, Heading2 } from '@/styles/common';
 import { Todo as TodoType } from '@/types/todoType';
 import { timeForToday } from '@/utils/time';
 
@@ -31,7 +31,7 @@ export const Detail = ({ todoContent }: { todoContent: TodoType }) => {
   };
 
   return (
-    <S.DetailContainer>
+    <DetailContainer>
       <Heading2>{title}</Heading2>
       <FlexEnd>
         <Button size="xSmall" background="primary" text="Edit" onClick={handleEditClick} />
@@ -40,6 +40,6 @@ export const Detail = ({ todoContent }: { todoContent: TodoType }) => {
       <S.TodoContent>{content || '💨 No content.'}</S.TodoContent>
       <S.Time>⏰ Created at: {timeForToday(createdAt)}</S.Time>
       <S.Time>🖍 Updated at: {timeForToday(updatedAt)}</S.Time>
-    </S.DetailContainer>
+    </DetailContainer>
   );
 };
