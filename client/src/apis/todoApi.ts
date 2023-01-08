@@ -1,13 +1,13 @@
 import axios, { AxiosRequestConfig } from 'axios';
 
-import { API_END_POINT } from '@/constants';
+import { API_END_POINT, USER_TOKEN_KEY } from '@/constants';
 import { Todo } from '@/types/todoType';
 /* eslint-disable consistent-return */
 
 const axiosConfig: AxiosRequestConfig = {
   baseURL: `${API_END_POINT}/todos`,
   timeout: 10000,
-  headers: { Authorization: localStorage.getItem('user token') || '' },
+  headers: { Authorization: localStorage.getItem(USER_TOKEN_KEY) || '' },
 };
 
 const todoInstance = axios.create(axiosConfig);
