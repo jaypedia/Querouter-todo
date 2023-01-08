@@ -1,23 +1,24 @@
+import { Form, Link } from 'react-router-dom';
+
 import * as S from './style';
 
-import { createTodo } from '@/apis/todoApi';
-import { Button } from '@/components/common/Button';
-import { useRefetchTodo } from '@/queries/todo';
-import { getDate } from '@/utils/date';
+import * as I from '@/assets/icons/headerButton';
+import { useLogout } from '@/hooks/useLogout';
 
 export const Header = () => {
-  const date = getDate();
-  const { mutate } = useRefetchTodo();
-
-  const handleNewTodoClick = async () => {
-    await createTodo({ title: 'New Todo', content: '' });
-    mutate();
-  };
+  const { logout } = useLogout();
 
   return (
-    <S.HeaderWrapper>
-      {date}
-      <Button size="xSmall" background="grey" text="New Todo" onClick={handleNewTodoClick} />
+    <S.HeaderWrapper className="header">
+      <Form method="post">
+        <S.HeaderButton type="submit" area-label="Add todo">
+          <I.Add />
+        </S.HeaderButton>
+      </Form>
+      <Link to="/">Star Todo</Link>
+      <S.HeaderButton type="button" area-label="Logout" onClick={logout}>
+        <I.LogOut />
+      </S.HeaderButton>
     </S.HeaderWrapper>
   );
 };

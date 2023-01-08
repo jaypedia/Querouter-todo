@@ -3,17 +3,18 @@ import styled from 'styled-components';
 import { COLOR } from '@/styles/color';
 import { FONT } from '@/styles/font';
 
-const ListContainer = styled.div`
+const ListContainer = styled.nav`
   width: 100%;
   height: 60vh;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   background: ${({ theme: { color } }) => color.cell.bg.cellHeaderBg};
   display: flex;
+  grid-area: list;
 `;
 
-const ListItems = styled.div`
-  width: 30%;
+const ListItems = styled.ul`
+  width: 100%;
   padding: 20px;
   overflow-y: scroll;
 

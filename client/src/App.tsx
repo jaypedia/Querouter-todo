@@ -1,20 +1,74 @@
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { useState } from 'react';
-import { RouterProvider } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { ThemeProvider } from 'styled-components';
 
-import { useSwitchTheme } from './hooks/useSwitchTheme';
-import { router } from './router';
-
 import { ThemeSwitch } from '@/components/ThemeSwitch';
+import { useSwitchTheme } from '@/hooks/useSwitchTheme';
+import {
+  Root,
+  SignUp,
+  Login,
+  Error,
+  Edit,
+  Todo,
+  Default,
+  rootLoader,
+  rootAction,
+  loginLoader,
+  todoLoader,
+} from '@/pages';
 import { GlobalStyle } from '@/styles/GlobalStyle';
 import { getDefaultTheme } from '@/utils/mode';
+
 import 'react-toastify/dist/ReactToastify.css';
 
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 10,
+    },
+  },
+});
+
+export const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Root />,
+    errorElement: <Error />,
+    loader: rootLoader,
+    action: rootAction(queryClient),
+    children: [
+      {
+        index: true,
+        element: <Default />,
+      },
+      {
+        path: 'todos/:todoId',
+        loader: todoLoader(queryClient),
+        element: <Todo />,
+      },
+      {
+        path: 'todos/:todoId/edit',
+        loader: todoLoader(queryClient),
+        element: <Edit />,
+      },
+    ],
+  },
+  {
+    path: 'login',
+    loader: loginLoader,
+    element: <Login />,
+  },
+  {
+    path: 'sign-up',
+    element: <SignUp />,
+  },
+]);
+
 export const App = () => {
-  const queryClient = new QueryClient();
   const [theme, setTheme] = useState(getDefaultTheme());
   const { isLight, switchTheme, currentTheme } = useSwitchTheme(theme, setTheme);
 
