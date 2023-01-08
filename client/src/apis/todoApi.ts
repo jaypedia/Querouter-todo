@@ -14,7 +14,7 @@ const todoInstance = axios.create(axiosConfig);
 
 export const getTodos = async () => {
   try {
-    const response = await todoInstance.get('');
+    const response = await todoInstance.get<Todo[]>('');
     return response.data;
   } catch (error) {
     console.error(error);
@@ -23,7 +23,7 @@ export const getTodos = async () => {
 
 export const getTodoById = async (id: string) => {
   try {
-    const response = await todoInstance.get(id);
+    const response = await todoInstance.get<Todo>(id);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -32,7 +32,7 @@ export const getTodoById = async (id: string) => {
 
 export const createTodo = async (newTodo: Pick<Todo, 'title' | 'content'>) => {
   try {
-    const response = await todoInstance.post('', newTodo);
+    const response = await todoInstance.post<Todo>('', newTodo);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -45,7 +45,7 @@ export const updateTodo = async ({
   content,
 }: Pick<Todo, 'id' | 'title' | 'content'>) => {
   try {
-    const response = await todoInstance.put(id, { title, content });
+    const response = await todoInstance.put<Todo>(id, { title, content });
     return response.data;
   } catch (error) {
     console.error(error);
@@ -54,7 +54,7 @@ export const updateTodo = async ({
 
 export const deleteTodos = async (id: string) => {
   try {
-    const response = await todoInstance.delete(id);
+    const response = await todoInstance.delete<null>(id);
     return response.data;
   } catch (error) {
     console.error(error);
