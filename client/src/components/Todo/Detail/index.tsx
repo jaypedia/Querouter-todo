@@ -23,6 +23,9 @@ export const Detail = ({ todoContent }: { todoContent: TodoType }) => {
   };
 
   const handleDeleteClick = () => {
+    const isConfirm = window.confirm('Are you sure you want to delete this?');
+    if (!isConfirm) return;
+
     toast.success(TOAST_TODO.message.delete, TOAST_TODO.option);
     deleteTodos(id);
     mutateDetail();
