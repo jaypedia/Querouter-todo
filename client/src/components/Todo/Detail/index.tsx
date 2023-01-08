@@ -1,3 +1,5 @@
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
 import { toast } from 'react-toastify';
 
 import * as S from './style';
@@ -9,7 +11,8 @@ import useMovePage from '@/hooks/useMovePage';
 import { useRefetchTodo, useRefetchTodoDetail } from '@/queries/todo';
 import { DetailContainer, FlexEnd, Heading2 } from '@/styles/common';
 import { Todo as TodoType } from '@/types/todoType';
-import { timeForToday } from '@/utils/time';
+
+dayjs.extend(relativeTime);
 
 export const Detail = ({ todoContent }: { todoContent: TodoType }) => {
   const { id, title, content, createdAt, updatedAt } = todoContent;
@@ -41,8 +44,8 @@ export const Detail = ({ todoContent }: { todoContent: TodoType }) => {
         <Button size="xSmall" background="black" text="Delete" onClick={handleDeleteClick} />
       </FlexEnd>
       <S.TodoContent>{content || '💨 No content.'}</S.TodoContent>
-      <S.Time>⏰ Created at: {timeForToday(createdAt)}</S.Time>
-      <S.Time>🖍 Updated at: {timeForToday(updatedAt)}</S.Time>
+      <S.Time>⏰ Created at: {dayjs().to(dayjs(createdAt))}</S.Time>
+      <S.Time>🖍 Updated at: {dayjs().to(dayjs(updatedAt))}</S.Time>
     </DetailContainer>
   );
 };
