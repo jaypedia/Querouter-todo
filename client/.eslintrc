@@ -27,8 +27,6 @@
   },
   "plugins": ["react", "prettier", "@typescript-eslint"],
   "rules": {
-    "prettier/prettier": ["error", {}, { "usePrettierrc": true }],
-    "import/no-unresolved": "off",
     "import/order": [
       "error",
       {
@@ -54,7 +52,7 @@
         "unnamedComponents": "arrow-function"
       }
     ],
-    "no-console": "off",
+    "no-console": ["warn", { "allow": ["error"] }],
     "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".jsx"] }],
     "import/extensions": [
       "error",
@@ -72,7 +70,8 @@
     "import/resolver": {
       "node": {
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
-      }
+      },
+      "typescript": {}
     }
   }
 }
