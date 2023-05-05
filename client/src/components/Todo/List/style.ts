@@ -4,8 +4,8 @@ import { COLOR } from '@/styles/color';
 import { FONT } from '@/styles/font';
 
 const ListContainer = styled.nav`
-  width: 100%;
-  height: 60vh;
+  max-width: 320px;
+  height: 65vh;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   background: ${({ theme: { color } }) => color.cell.bg.cellHeaderBg};
@@ -23,8 +23,21 @@ const ListItems = styled.ul`
     color: white;
   }
 
+  a.pending li {
+    background-color: ${COLOR.primary[200]};
+    color: white;
+  }
+
   a:hover:not(.active) li {
     background-color: ${({ theme: { color } }) => color.hover};
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: ${({ theme: { color } }) => color.cell.bg.cellHeaderBg};
   }
 `;
 
@@ -38,11 +51,4 @@ const ListItem = styled.li`
   white-space: nowrap;
 `;
 
-const DetailContainer = styled.div`
-  background: ${({ theme: { color } }) => color.cell.bg.cellBg};
-  height: 60vh;
-  display: flex;
-  padding: 20px;
-`;
-
-export { ListContainer, ListItems, ListItem, DetailContainer };
+export { ListContainer, ListItems, ListItem };

@@ -16,7 +16,9 @@ export const List = () => {
               <NavLink
                 key={id}
                 to={`/todos/${id}`}
-                className={({ isActive }) => (isActive ? 'active' : '')}
+                className={({ isActive, isPending }) => {
+                  return (isActive && 'active') || (isPending && 'pending') || '';
+                }}
               >
                 <S.ListItem>{title}</S.ListItem>
               </NavLink>
