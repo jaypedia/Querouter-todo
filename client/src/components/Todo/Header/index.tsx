@@ -10,7 +10,7 @@ export const Header = () => {
 
   return (
     <S.HeaderWrapper className="header">
-      <Form method="post">
+      <Form method="post" style={{ lineHeight: 0 }}>
         <S.HeaderButton type="submit" area-label="Add todo">
           <I.Add />
         </S.HeaderButton>
