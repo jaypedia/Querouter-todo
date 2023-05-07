@@ -62,6 +62,7 @@ export const router = createBrowserRouter([
       {
         path: 'todos/:todoId/destroy',
         action: destroyAction(queryClient),
+        errorElement: <ErrorPage />,
       },
     ],
   },
