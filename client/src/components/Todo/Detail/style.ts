@@ -9,6 +9,20 @@ const TodoContent = styled.div`
   width: 100%;
   border-radius: 10px;
   white-space: pre;
+  overflow-y: scroll;
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: white;
+    border-radius: 30px;
+  }
 `;
 
 const Time = styled.div`
