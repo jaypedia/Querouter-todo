@@ -5,13 +5,15 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { ThemeProvider } from 'styled-components';
 
-import { ThemeSwitch } from '@/components/ThemeSwitch';
+import { destroyAction } from './components/Todo/Detail/destoyAction';
+
+import { ThemeSwitch } from '@/components/common/ThemeSwitch';
 import { useSwitchTheme } from '@/hooks/useSwitchTheme';
 import {
   Root,
   SignUp,
   Login,
-  Error,
+  ErrorPage,
   Edit,
   Todo,
   Default,
@@ -19,6 +21,7 @@ import {
   rootAction,
   loginLoader,
   todoLoader,
+  editAction,
 } from '@/pages';
 import { GlobalStyle } from '@/styles/GlobalStyle';
 import { getDefaultTheme } from '@/utils/mode';
@@ -37,7 +40,7 @@ export const router = createBrowserRouter([
   {
     path: '/',
     element: <Root />,
-    errorElement: <Error />,
+    errorElement: <ErrorPage />,
     loader: rootLoader,
     action: rootAction(queryClient),
     children: [
@@ -53,7 +56,12 @@ export const router = createBrowserRouter([
       {
         path: 'todos/:todoId/edit',
         loader: todoLoader(queryClient),
+        action: editAction(queryClient),
         element: <Edit />,
+      },
+      {
+        path: 'todos/:todoId/destroy',
+        action: destroyAction(queryClient),
       },
     ],
   },
@@ -74,7 +82,7 @@ export const App = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ReactQueryDevtools initialIsOpen />
+      <ReactQueryDevtools />
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <RouterProvider router={router} />
