@@ -1,25 +1,43 @@
 <a name="readme-top"></a>
 
+![Querouter main image](https://user-images.githubusercontent.com/85419343/236681390-e6d74d08-e2fa-4afb-95db-aae638332ce6.png)
+
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
 <h1 align="center">React Query x React Router = Querouter 💘</h1>
   <p align="center">
-    <a href="https://tanstack.com/query/latest/docs/react/overview">React Query</a>와 <a href="">React Router</a>를 함께 사용해서 만들어 본 Todo List 프로젝트
+    The combination of <a href="https://tanstack.com/query/latest/docs/react/overview">React Query</a> and <a href="">React Router</a> is a match made in heaven.
+  </p>
+  <p align="center">
+  React Query's <b>data caching</b> + React Router's <b>data prefetching</b> = <b>powerful data fetching logic ✨</b>
   </p>
 </div>
 
+<br />
+
+## Table of Contents
+
+- [Built With](#built-with)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Features](#features)
+  - [1. Login / Sign up](#1-login---sign-up)
+  - [2. Todo List](#2-todo-list)
+
+<br />
+
 ## Built With
 
-[![React][react.js]][react-url] ![React Query] ![TypeScript] ![Webpack]
+[![React][react.js]][react-url] ![React Query] ![React Router] ![TypeScript] ![Webpack]
 
 <br>
 <!-- GETTING STARTED -->
 
 ## Getting Started
 
-- 이 프로젝트를 로컬 컴퓨터에서 실행하고 싶다면 다음 단계를 수행하세요.
-- 서버를 먼저 실행한 후, 클라이언트를 실행해야 합니다.
+> To run this project on your local machine, follow these steps.
 
 ### Prerequisites
 
@@ -84,3 +102,4 @@
 [typescript]: https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white
 [webpack]: https://img.shields.io/badge/webpack-%238DD6F9.svg?style=for-the-badge&logo=webpack&logoColor=black
 [react query]: https://img.shields.io/badge/-React%20Query-FF4154?style=for-the-badge&logo=react%20query&logoColor=white
+[react router]: https://img.shields.io/badge/-React%20Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white
