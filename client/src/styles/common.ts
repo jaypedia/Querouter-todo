@@ -18,9 +18,9 @@ const InnerContainer = styled.div`
 
 const TodoBox = styled(InnerContainer)`
   display: grid;
-  grid-template-areas:
-    'header header header header'
-    'list todo todo todo';
+  grid:
+    'header header'
+    'list todo' auto / 1fr 3fr;
 `;
 
 const headerWrapperStyle = css`
@@ -82,12 +82,13 @@ const FlexColumnStart = styled.div`
 
 const DetailContainer = styled.div`
   background: ${({ theme: { color } }) => color.cell.bg.cellBg};
-  height: 60vh;
+  height: 65vh;
   ${flexBox({ direction: 'column', alignItems: 'flex-start', justifyContent: 'flex-start' })}
   border-bottom-right-radius: 10px;
   padding: 20px;
   grid-area: todo;
   z-index: 999;
+  max-width: 1000px;
 `;
 
 export {

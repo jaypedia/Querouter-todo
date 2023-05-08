@@ -23,9 +23,12 @@ export const COLOR = {
     500: '#4E4B66',
     600: '#2A2748',
     700: '#14142B',
+    800: '#000000',
   },
   transparent: {
     100: '#a0a3bd66',
+    200: '#f6f6f66b',
+    300: '#464646a1',
   },
   black: '#0A071B',
   white: '#FEFEFE',
