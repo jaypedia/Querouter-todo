@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const PORT = 9000;
 
@@ -16,7 +17,7 @@ module.exports = {
     ],
   },
 
-  plugins: [new webpack.ProgressPlugin()],
+  plugins: [new webpack.ProgressPlugin(), new BundleAnalyzerPlugin()],
 
   devServer: {
     client: {
