@@ -1,10 +1,9 @@
 import React from 'react';
 
-import { useLogin } from '../Login/Login.hook';
-
 import { createAccount } from '@/apis/loginApi';
 import { Button } from '@/components/common/Button';
 import { Input } from '@/components/common/Input';
+import { useLogin } from '@/hooks/useLogin';
 import useMovePage from '@/hooks/useMovePage';
 import * as S from '@/pages/Login/style';
 import { Heading1, Heading4 } from '@/styles/common';
@@ -40,7 +39,7 @@ export const SignUp = () => {
 
   return (
     <S.LoginWrapper>
-      <Heading1>✨ Todo List ✨</Heading1>
+      <Heading1>Star Todo</Heading1>
       <Heading4>Create your Account</Heading4>
       <S.LoginForm onSubmit={handleCreateAccount}>
         <Input
